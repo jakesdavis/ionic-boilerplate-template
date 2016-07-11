@@ -1,0 +1,23 @@
+<ion-view>
+  <ion-nav-bar>
+    <ion-nav-title align-title="center">
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+      <a ng-show="data.showMenu" class="button button-icon icon" ng-click="events.openMenu($event)"></a>
+      <a ng-show="data.showBack" class="button button-icon icon" ng-click="GoBack()"></a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content has-bouncing="false" class="ionic-content" scroll="false">
+    <ion-nav-view name="mainContent"></ion-nav-view>
+  </ion-content>
+</ion-view>
+<div class="toast animated med-fast hide" ng-class="{'slideOutDown':!data.toast.showToast , 'slideInUp':data.toast.showToast}">
+  <span class="toast-icon" ng-class="data.toast.icon"></span>
+  <span class="toast-message-wrapper" ng-class="{'has-icon':(data.toast.icon.length!=0),'has-button':data.toast.button}">
+    <span class="toast-message text-s">{{data.toast.text}}</span>
+  <span class="toast-message-align"></span>
+  </span>
+  <span class="toast-button text-s" ng-if="data.toast.button" ng-click="data.toast.button.event()">
+    <span>{{data.toast.button.text}}</span>
+  </span>
+</div>

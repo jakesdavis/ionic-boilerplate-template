@@ -1,0 +1,14 @@
+<ion-modal-view class="transparent-menu menu" ng-click="events.closeMenu($event)">
+  <ion-content has-bouncing="false" class="home-page " scroll="false">
+    <ion-header-bar align-title="center" class="bar bar-header">
+      <div class="buttons buttons-left header-item">
+        <span class="left-buttons">
+          <a ng-show="data.showMenu" class="button button-icon icon" ng-click="events.closeMenu($event)"></a>
+          <a ng-show="data.showBack" class="button button-icon icon ng-click="GoBack()"></a>
+        </span>
+      </div>
+    </ion-header-bar>
+    <ion-list class="navigation-options has-header">
+    </ion-list>
+  </ion-content>
+</ion-modal-view>
