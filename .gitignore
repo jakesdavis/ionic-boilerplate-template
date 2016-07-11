@@ -1,0 +1,11 @@
+platforms
+platforms/**/*
+node_modules
+node_modules/**/*
+docs
+out
+out/**/*
+.DS_Store
+**/*/.DS_Store
+.vscode
+.vscode/**
