@@ -36,56 +36,9 @@
 
 
     var _ = {
-      menu: null,
-      openMenu: function (event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        $scope.menu.show();
-        return false;
-      },
-      closeMenu: function (event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        $scope.menu.hide();
-        return false;
-      },
-      getWaiting: function () {
-        // api call
-        var getWaitingTime = request.serviceDesk.waitTime({
-          "e": user.email
-        });
-        getWaitingTime.then(function (data) {
-          /*
-           * Response is array of object of type as below
-           * {
-           * "wait":"string, the wait time",
-           * "queue ":"int, the number of callers in the queue"
-           * }
-           *
-           */
-
-          $scope.data.waitTime = data[0];
-          user.waitTime = $scope.data.waitTime;
-        }, function (data) {
-          console.error(data);
-        });
-      }
     };
 
     $scope.events = {
-      // triggerMenu: function (event) {
-      //   _.triggerMenu(event);
-      // },
-      openMenu: function (event) {
-        _.openMenu(event);
-      },
-      closeMenu: function (event) {
-        _.closeMenu(event);
-      },
-      openItem: function (event, item) {
-        _.closeMenu(event);
-        $rootScope.navigateTo(item);
-      }
     };
 
 
@@ -168,6 +121,13 @@
     } catch (e) {
       console.error("Initialize Failed");
     }
+  });
+
+  module.controller("HomeController", function($rootScope) {
+    $rootScope.toast({
+      text: "App Loaded Successfully"
+    });
+
   });
 
 })();

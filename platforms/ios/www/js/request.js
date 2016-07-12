@@ -17,14 +17,14 @@
    *
    */
   module.factory('request', function ($cordovaDevice, $ionicLoading, $cordovaNetwork, $http, $q, $rootScope) {
-    var baseUrl = "https://com.test.hello";
+    var baseUrl = "api.openweathermap.org/data/2.5";
 
     var service = {
-      sampleURL: "/v1/sampleURL"
+      weather: "/weather"
     };
 
     var objParams = {
-      "key": null
+      "APPID": ""
     };
     /**
      * @function defaultHeader
@@ -47,7 +47,7 @@
     };
 
     document.addEventListener("deviceready", function () {
-      objParams.key = "sample key";
+      objParams.APPID = "db585f9c2596dd5357447a9169729ae8";
     });
 
     var common = {
@@ -86,13 +86,15 @@
       }
     };
     var _ = {
-      feedback: {
-        sendEmail: function (params) {
+      weather: {
+        getWeather: function (params) {
           var deferred = $q.defer();
           var header = defaultHeader();
           header.method = "GET";
           header.url = baseUrl + service.feedback;
           header.params = {
+            "APPID": objParams.APPID,
+            "q": params.city
           };
           if ($cordovaNetwork.isOnline()) {
             common.preLoader();
@@ -115,20 +117,18 @@
     };
 
     return {
-      feedback: {
+      weather: {
         /**
          * @function
-         * @name this.feedback.sendEmail
-         * @description Send an email, with feedback about the app
+         * @name this.weather.getWeather
+         * @description Get Weather
          *
-         * @argument params.e   (string, required)  The email of the user, who is requesting authentication
-         * @argument params.s   (string, optional)  The number of stars (out of 5) that the user gave for the app (e.g. "1", "2","3", "4", "5")
-         * @argument params.c   (string, optional)  The user’s comments
+         * @argument params.q   (string, optional)  The city where weather needs to be queried
          *
          * @returns {Object} Deferred.promise
          */
-        sendEmail: function (params) {
-          return _.feedback.sendEmail(params);
+        getWeather: function (params) {
+          return _.weather.getWeather(params);
         }
       }
     };

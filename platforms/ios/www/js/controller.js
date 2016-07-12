@@ -170,4 +170,11 @@
     }
   });
 
+  module.controller("HomeController", function($rootScope) {
+    $rootScope.toast({
+      text: "App Loaded Successfully"
+    });
+
+  });
+
 })();
